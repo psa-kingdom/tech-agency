@@ -9,9 +9,18 @@ const Layout = () => {
   React.useEffect(() => {
     if (!location.hash) {
       window.scrollTo({ top: 0, behavior: "instant" });
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+    const id = location.hash.replace("#", "");
+    // Give the target route a moment to mount before scrolling into view.
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 80);
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen bg-obsidian text-cloud flex flex-col">
