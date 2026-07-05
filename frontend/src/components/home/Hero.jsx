@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import VisualPlaceholder from "@/components/shared/VisualPlaceholder";
+import HeroBackgroundVideo from "@/components/home/HeroBackgroundVideo";
 import { CTA_LINK, AGENCY_NAME, TRUST_STRIP_TEXT } from "@/data/siteData";
 
 const Hero = () => {
@@ -13,8 +14,9 @@ const Hero = () => {
 
   return (
     <section className="relative bg-obsidian overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-iris/[0.08] via-transparent to-transparent pointer-events-none" />
-      <div className="relative max-w-content mx-auto px-6 pt-20 md:pt-28 pb-20 text-center">
+      <HeroBackgroundVideo />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-obsidian pointer-events-none z-[1]" />
+      <div className="relative z-10 max-w-content mx-auto px-6 pt-20 md:pt-28 pb-20 text-center">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
