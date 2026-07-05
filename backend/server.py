@@ -210,23 +210,39 @@ async def delete_project(project_id: str, admin: AdminUser = Depends(get_current
     return {"message": "Project deleted"}
 
 
-# Include the router in the main app
-app.include_router(api_router)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+# Include the router in the main app
+app.include_router(api_router)
+
+# Configure CORS origins safely
+cors_origins_raw = os.environ.get('CORS_ORIGINS', '')
+if cors_origins_raw:
+    cors_origins = [origin.strip() for origin in cors_origins_raw.split(',') if origin.strip()]
+    if "*" in cors_origins:
+        logger.warning("CORS_ORIGINS contains '*' which is invalid when allow_credentials=True. Removing '*' to prevent crash.")
+        cors_origins = [o for o in cors_origins if o != "*"]
+else:
+    # Default origins for local development to avoid crashing Starlette when allow_credentials=True
+    cors_origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=cors_origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 DEMO_PROJECTS = [
