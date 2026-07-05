@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import VisualPlaceholder from "@/components/shared/VisualPlaceholder";
 import HeroBackgroundVideo from "@/components/home/HeroBackgroundVideo";
 import { CTA_LINK, AGENCY_NAME, TRUST_STRIP_TEXT } from "@/data/siteData";
 
@@ -13,16 +12,16 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-obsidian overflow-hidden">
+    <section className="relative bg-obsidian overflow-hidden min-h-[calc(100vh-73px)] flex items-center">
       <HeroBackgroundVideo />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-obsidian pointer-events-none z-[1]" />
-      <div className="relative z-10 max-w-content mx-auto px-6 pt-20 md:pt-28 pb-20 text-center">
+      <div className="relative z-10 max-w-content mx-auto px-6 py-20 text-center w-full">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           data-testid="hero-eyebrow"
-          className="inline-block font-mono-label text-[11px] text-ash bg-white/[0.06] border border-white/10 rounded-pill px-4 py-2"
+          className="inline-block font-mono-label text-[11px] text-cloud bg-black/40 backdrop-blur-md border border-white/20 rounded-pill px-4 py-2"
         >
           Software · AI · Automation
         </motion.span>
@@ -32,7 +31,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           data-testid="hero-headline"
-          className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[0.95] text-cloud text-balance max-w-4xl mx-auto"
+          className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[0.95] text-cloud text-balance max-w-4xl mx-auto [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
         >
           We build the software, AI, and automation your business runs on.
         </motion.h1>
@@ -42,7 +41,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           data-testid="hero-subheadline"
-          className="mt-6 text-base md:text-lg font-light text-ash max-w-2xl mx-auto leading-relaxed"
+          className="mt-6 text-base md:text-lg font-light text-cloud/90 max-w-2xl mx-auto leading-relaxed [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]"
         >
           {AGENCY_NAME} is a tech consulting studio partnering with founders
           and enterprises to design, build, and ship websites, custom
@@ -68,32 +67,21 @@ const Hero = () => {
           <button
             onClick={scrollToServices}
             data-testid="hero-secondary-cta"
-            className="rounded-lg px-6 h-12 text-sm font-medium border border-white/20 text-cloud hover:bg-white/5 transition-colors duration-200 w-full sm:w-auto"
+            className="rounded-lg px-6 h-12 text-sm font-medium border border-white/50 bg-black/30 backdrop-blur-md text-cloud hover:bg-white/10 hover:border-white/70 transition-colors duration-200 w-full sm:w-auto"
           >
             See Our Services
           </button>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="mt-16 md:mt-20"
-        >
-          <VisualPlaceholder
-            testId="hero-visual-placeholder"
-            variant="hero"
-            accent="iris"
-            caption="composite mockup collage — browser window + dashboard + AI chat/agent interface"
-          />
-        </motion.div>
-
-        <p
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
           data-testid="hero-trust-strip"
-          className="mt-10 font-mono-label text-[11px] text-fog"
+          className="mt-14 inline-block font-mono-label text-[11px] text-cloud/80 bg-black/30 backdrop-blur-md border border-white/10 rounded-pill px-4 py-2"
         >
           {TRUST_STRIP_TEXT}
-        </p>
+        </motion.p>
       </div>
     </section>
   );

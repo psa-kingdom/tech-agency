@@ -106,7 +106,7 @@ const HeroBackgroundVideo = () => {
       />
       <div
         data-testid="hero-background-video-overlay"
-        className="absolute inset-0 bg-black/40 pointer-events-none"
+        className="absolute inset-0 bg-black/55 pointer-events-none"
       />
     </>
   );
