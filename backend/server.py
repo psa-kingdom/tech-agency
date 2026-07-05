@@ -104,15 +104,16 @@ def _cookie_kwargs():
 @api_router.post("/auth/login", response_model=AdminUserPublic)
 async def admin_login(payload: LoginRequest, response: Response, request: Request):
     email = payload.email.lower().strip()
-    identifier = f"{request.client.host}:{email}"
-    await check_brute_force(db, identifier)
+    # Keyed by email only (not client IP) — this is a single-admin CMS behind
+    # a proxy where request.client.host is not a stable per-client identifier.
+    await check_brute_force(db, email)
 
     doc = await db.admin_users.find_one({"email": email})
     if not doc or not verify_password(payload.password, doc["password_hash"]):
-        await record_failed_login(db, identifier)
+        await record_failed_login(db, email)
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
-    await clear_login_attempts(db, identifier)
+    await clear_login_attempts(db, email)
     admin = AdminUser.from_mongo(doc)
     access_token = create_access_token(admin.id, admin.email)
     refresh_token = create_refresh_token(admin.id)

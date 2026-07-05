@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const ProjectModal = ({ project, open, onOpenChange }) => {
   if (!project) return null;
@@ -31,12 +31,12 @@ const ProjectModal = ({ project, open, onOpenChange }) => {
               </span>
             ))}
           </div>
-          <h3
+          <DialogTitle
             data-testid="project-modal-title"
             className="text-2xl md:text-3xl font-display font-light text-cloud"
           >
             {project.title}
-          </h3>
+          </DialogTitle>
           <p
             data-testid="project-modal-description"
             className="mt-4 text-base text-ash leading-relaxed"

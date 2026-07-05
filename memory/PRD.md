@@ -63,11 +63,36 @@ system).
   plain calendar link to form + calendar combo without restructuring).
 - P1: Light/dark theme toggle in nav (tokens already defined as CSS vars to
   support this without rewriting component styles).
+- P1: Real client project images/case studies to replace 8 demo/placeholder
+  portfolio projects (admin can edit these directly via /admin/dashboard).
+- P1: Image upload support in admin (currently URL-paste only, per user choice).
 - P2: Blog (CMS-driven), admin panel for content/leads management.
 - P2: Finalized agency logo/brand identity (current logo is a placeholder
   wordmark).
+- P2: Multiple images/gallery per project (currently single image, per user choice).
+
+## Feature Log
+### Feb 2026 — Projects Portfolio + Admin CMS
+- Added Featured Projects bento section on homepage (5 tiles: 1 large + 4
+  small) pulling from `featured=true` projects, each opening a shared
+  `ProjectModal` (large image + description + tags). "View All Projects"
+  CTA -> `/projects`.
+- New `/projects` page: responsive grid of all projects with client-side
+  tag filter chips, same modal on click, closes with GetInTouch CTA.
+- Admin CMS: `/admin/login` (not linked in public nav by design) +
+  `/admin/dashboard` (protected route). JWT httpOnly-cookie auth, single
+  seeded admin account, brute-force lockout (5 attempts/15min, keyed by
+  email). Full Project CRUD (title, description, image_url, tags via
+  admin-extendable TagInput, featured toggle, order).
+- Backend: `models.py` (PyObjectId/BaseDocument pattern, Project/AdminUser),
+  `auth.py` (bcrypt + PyJWT + brute-force), 8 demo projects seeded (5
+  featured) with real stock photos across all tag categories.
+- Tested via testing_agent_v3 (2 iterations): fixed anchor-scroll bug (iter
+  1), fixed brute-force lockout (naive/aware datetime comparison bug +
+  proxy-unstable IP-based identifier) and ProjectModal a11y DialogTitle
+  linkage (iter 2). All flows verified passing after fixes.
 
 ## Notes
-- No backend/auth/DB was touched — default FastAPI hello-world server.py
-  remains untouched.
-- No 3rd-party integrations were required for this build.
+- No 3rd-party integrations were required for this build (auth is custom
+  JWT, images are URL-paste, no object storage used per user's explicit
+  choice).

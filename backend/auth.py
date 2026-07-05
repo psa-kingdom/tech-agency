@@ -83,11 +83,14 @@ async def check_brute_force(db, identifier: str):
     record = await db.login_attempts.find_one({"identifier": identifier})
     if record and record.get("count", 0) >= MAX_LOGIN_ATTEMPTS:
         locked_until = record.get("locked_until")
-        if locked_until and locked_until > datetime.now(timezone.utc):
-            raise HTTPException(
-                status_code=429,
-                detail="Too many failed login attempts. Try again later.",
-            )
+        if locked_until:
+            if locked_until.tzinfo is None:
+                locked_until = locked_until.replace(tzinfo=timezone.utc)
+            if locked_until > datetime.now(timezone.utc):
+                raise HTTPException(
+                    status_code=429,
+                    detail="Too many failed login attempts. Try again later.",
+                )
 
 
 async def record_failed_login(db, identifier: str):
@@ -101,7 +104,6 @@ async def record_failed_login(db, identifier: str):
         {"$set": {"count": count, "locked_until": locked_until}},
         upsert=True,
     )
-
 
 async def clear_login_attempts(db, identifier: str):
     await db.login_attempts.delete_one({"identifier": identifier})
