@@ -54,6 +54,14 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          <Link
+            to="/projects"
+            data-testid="nav-link-projects"
+            className="px-4 py-2 rounded-navitems text-sm text-ash hover:text-cloud hover:bg-white/5 transition-colors duration-200"
+          >
+            Projects
+          </Link>
+
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -109,6 +117,15 @@ const Navbar = () => {
                 </SheetClose>
               ))}
               <div className="h-px bg-white/10 my-2" />
+              <SheetClose asChild>
+                <Link
+                  to="/projects"
+                  data-testid="mobile-nav-link-projects"
+                  className="px-3 py-3 rounded-lg text-sm text-ash hover:text-cloud hover:bg-white/5"
+                >
+                  Projects
+                </Link>
+              </SheetClose>
               {NAV_LINKS.map((link) => (
                 <SheetClose asChild key={link.label}>
                   <Link

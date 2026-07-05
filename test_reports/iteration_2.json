@@ -1,0 +1,38 @@
+{
+  "summary": "Tested new Featured Projects (homepage bento), /projects page with tag filters, ProjectModal, and full Admin CMS auth+CRUD. Backend: 18/19 pytest cases passed (94.7%). Frontend: all critical flows passed via Playwright — homepage featured tiles, modal, View All button, navbar (desktop+mobile) Projects link, /projects filtering+grid+modal, admin login (wrong/correct creds), protected route redirect, dashboard stats, Add/Edit/Delete project (with TagInput suggestion+custom tag), logout+re-redirect. One backend security bug found: brute-force lockout does not trigger.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/auth/login", "issue": "Brute-force lockout (5 attempts/15min) never triggers 429. RCA: identifier is built as f'{request.client.host}:{email}' in auth.py check_brute_force/record_failed_login. In this environment, request.client.host alternates between two different upstream/proxy IPs (observed 10.169.1.66 and 10.169.2.130) across sequential requests to the same endpoint, splitting the failed-attempt counter across two separate 'identifier' documents in login_attempts collection. Neither ever reaches 5, so the account is never locked. Verified via direct curl (6 sequential wrong-password POSTs all returned 401, never 429) and by inspecting db.login_attempts which shows 2 docs with count=3 each for the same email instead of one doc with count=6. Fix: key the lockout by email only (safer for a single-admin CMS) or use a trusted X-Forwarded-For header behind the actual client-facing proxy instead of request.client.host.", "priority": "HIGH"}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "ProjectModal (via Dialog/DialogContent)", "issue": "Radix a11y console warning: 'DialogContent requires a DialogTitle for the component to be accessible for screen reader users.' Modal visually shows a title but Radix doesn't detect it as the accessible DialogTitle element (or it's not linked via aria). Cosmetic/accessibility only, no functional impact observed.", "selector": "[data-testid='project-modal']", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/test_projects_admin.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Fix brute-force lockout identifier logic in auth.py (see RCA) — currently non-functional in this proxied environment, meaning unlimited login attempts are effectively possible against the admin account.",
+    "Optional: wrap ProjectModal's title with proper Radix DialogTitle linkage to remove a11y console warning.",
+    "Main agent should actually populate /app/memory/test_credentials.md with admin credentials as claimed in the review request — file was found empty during testing (had to source credentials from the review request/backend .env instead)."
+  ],
+  "critical_code_review_comments": [
+    "server.py/auth.py: MongoDB _id properly excluded via Project.from_mongo()/BaseDocument pattern — good practice, no raw ObjectId leakage observed in any API response.",
+    "All /api/projects mutation endpoints correctly protected with Depends(get_current_admin) — verified 401 on unauthenticated POST/PUT/DELETE.",
+    "bcrypt hash format confirmed as $2b$ — correct.",
+    "httpOnly, samesite=lax cookies set correctly on login; CORS configured with allow_credentials=True and explicit origin (not '*') — correct for cookie-based auth.",
+    "seed_admin() correctly updates password hash if ADMIN_PASSWORD env changes and existing hash doesn't match — verified admin login worked with credentials from .env/review request.",
+    "Brute force lockout logic itself (record_failed_login/check_brute_force) is correctly written in isolation, but the identifier construction using request.client.host is fragile in any environment with multiple upstream/proxy hops — this is the root cause of the failure, not a logic bug in the counting itself."
+  ],
+  "updated_files": ["/app/backend/tests/test_projects_admin.py"],
+  "success_rate": {"backend": "94.7%", "frontend": "100%"},
+  "test_credentials": "admin@altioslabs.com / Altios@Admin2026 (sourced from review request + backend/.env; NOT found in /app/memory/test_credentials.md which was empty)",
+  "seed_data_creation": "Created and cleaned up TEST_-prefixed project via pytest (test_create_update_delete_project_lifecycle) and via Playwright UI flow (TEST_UI_Project / TEST_UI_Project_Edited) — both fully deleted after test, no residual test data left in DB.",
+  "retest_needed": true,
+  "main_agent_can_self_test": false,
+  "context_for_next_testing_agent": "Projects/Admin CMS feature is functionally solid end-to-end (public pages, modal, filters, admin auth, CRUD, logout, route protection all verified working). The one real bug is the brute-force lockout never triggering due to request.client.host being unstable behind this environment's proxy — reproduce with 6 sequential curl POSTs to /api/auth/login with wrong password from the public REACT_APP_BACKEND_URL and inspect db.login_attempts for split identifiers. All other auth/security checks (401 on unauth CRUD, cookie flags, bcrypt format, CORS) passed cleanly.",
+  "rca of the issue": "See backend_issues.minor[0] issue field for full RCA of brute-force lockout bug."
+}
