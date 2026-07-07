@@ -33,7 +33,7 @@ const Hero = () => {
           data-testid="hero-headline"
           className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[0.95] text-cloud text-balance max-w-4xl mx-auto [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
         >
-          We build the software, AI, and automation your business runs on.
+          Your Haven for Seamless Business Transformation
         </motion.h1>
 
         <motion.p
