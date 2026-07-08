@@ -31,9 +31,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           data-testid="hero-headline"
-          className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[0.95] text-cloud text-balance max-w-4xl mx-auto [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
+          className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[1.05] text-cloud text-balance max-w-4xl mx-auto [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
         >
-          Your Haven for Seamless Business Transformation
+          Build Better Digital Products. <br className="hidden sm:inline" /> Automate Smarter. Grow Faster.
         </motion.h1>
 
         <motion.p
@@ -43,9 +43,9 @@ const Hero = () => {
           data-testid="hero-subheadline"
           className="mt-6 text-base md:text-lg font-light text-cloud/90 max-w-2xl mx-auto leading-relaxed [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]"
         >
-          {AGENCY_NAME} is a tech consulting studio partnering with founders
-          and enterprises to design, build, and ship websites, custom
-          software, and AI systems that actually move the business forward.
+          From enterprise software and AI automation to high-performing websites, 
+          we help ambitious businesses transform ideas into scalable digital 
+          solutions that drive measurable growth.
         </motion.p>
 
         <motion.div

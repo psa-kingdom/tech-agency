@@ -12,10 +12,12 @@ const Footer = () => {
       <div className="max-w-content mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12">
         <div>
           <Logo />
-          <p className="mt-4 text-sm text-ash leading-relaxed max-w-xs">
-            {AGENCY_NAME} partners with founders and enterprises to design,
-            build, and ship websites, custom software, and AI systems that
-            actually move the business forward.
+          <p className="mt-4 text-xs font-mono text-fog tracking-wider uppercase">
+            Enterprise Technology · Intelligence · Transformation
+          </p>
+          <p className="mt-2 text-sm text-ash leading-relaxed max-w-xs font-light">
+            Building Intelligent Enterprises. <br />
+            Navigate Complexity. Accelerate Growth.
           </p>
         </div>
 

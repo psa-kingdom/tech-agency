@@ -6,12 +6,13 @@ import {
   Bot,
   LayoutDashboard,
   Boxes,
-  Megaphone,
+  Network,
+  Database,
   ArrowRight,
 } from "lucide-react";
 import { SERVICES } from "@/data/siteData";
 
-const ICONS = { Globe, Bot, LayoutDashboard, Boxes, Megaphone };
+const ICONS = { Globe, Bot, LayoutDashboard, Boxes, Network, Database };
 
 const ACCENT_STYLES = {
   iris: { iconBg: "bg-iris/15", iconText: "text-iris", border: "hover:border-iris/40" },
@@ -23,13 +24,14 @@ const ACCENT_STYLES = {
 
 const LargeTile = ({ service, index }) => {
   const Icon = ICONS[service.icon];
-  const accent = ACCENT_STYLES[service.accent];
+  const accent = ACCENT_STYLES[service.accent] || ACCENT_STYLES.iris;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      className="h-full"
     >
       <Link
         to={`/services/${service.slug}`}
@@ -42,18 +44,27 @@ const LargeTile = ({ service, index }) => {
         <h3 className="font-display font-light text-2xl text-cloud">{service.tileTitle}</h3>
         <p className="mt-2 text-base font-light text-cloud/90">{service.tileHeadline}</p>
         <p className="mt-3 text-sm text-ash leading-relaxed flex-1">{service.tileDescription}</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {service.tags.map((tag) => (
-            <span
-              key={tag}
-              className="font-mono-label text-[10px] text-ash bg-white/5 border border-white/10 rounded-pill px-3 py-1"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        
+        {service.capabilities && (
+          <div className="mt-6 flex flex-wrap gap-1.5">
+            {service.capabilities.slice(0, 4).map((cap) => (
+              <span
+                key={cap}
+                className="font-mono-label text-[9px] text-ash bg-white/5 border border-white/10 rounded-pill px-2.5 py-1"
+              >
+                {cap}
+              </span>
+            ))}
+            {service.capabilities.length > 4 && (
+              <span className="font-mono-label text-[9px] text-fog bg-white/5 border border-white/10 border-dashed rounded-pill px-2.5 py-1">
+                +{service.capabilities.length - 4} more
+              </span>
+            )}
+          </div>
+        )}
+
         <span className="mt-6 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:gap-2.5 transition-all duration-200">
-          {service.tileLink}
+          Explore Solution
           <ArrowRight className="w-3.5 h-3.5" />
         </span>
       </Link>
@@ -63,13 +74,14 @@ const LargeTile = ({ service, index }) => {
 
 const SmallTile = ({ service, index }) => {
   const Icon = ICONS[service.icon];
-  const accent = ACCENT_STYLES[service.accent];
+  const accent = ACCENT_STYLES[service.accent] || ACCENT_STYLES.iris;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      className="h-full"
     >
       <Link
         to={`/services/${service.slug}`}
@@ -79,11 +91,30 @@ const SmallTile = ({ service, index }) => {
         <div className={`w-10 h-10 rounded-lg ${accent.iconBg} flex items-center justify-center shrink-0`}>
           <Icon className={`w-5 h-5 ${accent.iconText}`} />
         </div>
-        <div>
+        <div className="flex-1 flex flex-col h-full">
           <h3 className="font-display font-light text-lg text-cloud">{service.tileTitle}</h3>
-          <p className="mt-1.5 text-sm text-ash leading-relaxed">{service.tileOneLiner}</p>
-          <span className="mt-3 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:gap-2.5 transition-all duration-200">
-            {service.tileLink}
+          <p className="mt-1.5 text-sm text-ash leading-relaxed flex-1">{service.tileHeadline}</p>
+          
+          {service.capabilities && (
+            <div className="mt-4 flex flex-wrap gap-1">
+              {service.capabilities.slice(0, 3).map((cap) => (
+                <span
+                  key={cap}
+                  className="font-mono-label text-[8px] text-ash bg-white/5 border border-white/10 rounded-pill px-2 py-0.5"
+                >
+                  {cap}
+                </span>
+              ))}
+              {service.capabilities.length > 3 && (
+                <span className="font-mono-label text-[8px] text-fog bg-white/5 border border-white/10 border-dashed rounded-pill px-2 py-0.5">
+                  +{service.capabilities.length - 3} more
+                </span>
+              )}
+            </div>
+          )}
+
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:gap-2.5 transition-all duration-200">
+            Explore Solution
             <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>
@@ -97,16 +128,16 @@ const BentoGrid = () => {
   const small = SERVICES.filter((s) => s.size === "small");
 
   return (
-    <section id="services" className="bg-obsidian">
+    <section id="services" className="bg-obsidian border-t border-white/10">
       <div className="max-w-content mx-auto px-6 py-20 md:py-28">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="font-mono-label text-[11px] text-ash">What We Do</span>
+          <span className="font-mono-label text-[11px] text-ash">Solutions</span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-light text-cloud leading-[0.95] text-balance">
-            One team. Every layer of your tech stack.
+            Intelligent platforms. Enterprise capability.
           </h2>
           <p className="mt-5 text-base md:text-lg font-light text-ash leading-relaxed">
-            From the first pixel of your website to the AI agents running
-            behind the scenes — we design, build, and integrate it all.
+            From digital platforms to enterprise software, intelligent automation, 
+            and data engineering—we design, build, and modernize systems that drive growth.
           </p>
         </div>
 
@@ -115,7 +146,7 @@ const BentoGrid = () => {
             <LargeTile key={s.slug} service={s} index={i} />
           ))}
         </div>
-        <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5">
           {small.map((s, i) => (
             <SmallTile key={s.slug} service={s} index={i} />
           ))}

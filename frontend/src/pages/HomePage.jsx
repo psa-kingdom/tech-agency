@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "@/components/home/Hero";
 import BentoGrid from "@/components/home/BentoGrid";
+import Industries from "@/components/home/Industries";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import WhyUs from "@/components/home/WhyUs";
 import Process from "@/components/home/Process";
@@ -12,6 +13,7 @@ const HomePage = () => {
     <div data-testid="home-page">
       <Hero />
       <BentoGrid />
+      <Industries />
       <FeaturedProjects />
       <WhyUs />
       <Process />
