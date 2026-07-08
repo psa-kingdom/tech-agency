@@ -303,27 +303,27 @@ import reviewer3 from "../assets/reviewer-3.png";
 
 export const TESTIMONIALS = [
   {
-    name: "Sarah Wilson",
-    role: "CEO",
-    company: "Hummingbird",
-    quote: "Navigatte has been an absolute game-changer for our organization. The portal they built is so intuitive and stable that our dealer network adoption rate doubled in less than a month, and our administrative overhead was cut by 40%.",
+    name: "Managing Partner",
+    role: "Financial Advisory",
+    company: "P Suman & Associates",
+    quote: "Navigatte exceeded our expectations by delivering a website that reflects the professionalism and credibility of our firm. They took the time to understand our brand, provided valuable recommendations throughout the project, and created a fast, intuitive, and polished digital experience. Their attention to detail, technical expertise, and proactive communication made the entire engagement seamless. We look forward to working with them again on future digital initiatives.",
     image: reviewer1,
     accent: "iris"
   },
   {
-    name: "David Chen",
-    role: "CTO",
-    company: "Apex Auto",
-    quote: "Their expertise in custom enterprise application engineering is unparalleled. They modernized our legacy ERP systems without a single minute of downtime. A highly disciplined team that builds code to scale.",
-    image: reviewer2,
+    name: "Director",
+    role: "Non-Profit",
+    company: "Crazy Hands NGO",
+    quote: "Working with Navigatte was an excellent experience from start to finish. They understood our mission and built a website that truly supports our organization. The member registration and approval system has made managing our community effortless, while the integrated online donation feature has made it easier for supporters to contribute to our cause. The team was responsive, professional, and committed to delivering exactly what we needed. I would gladly recommend Navigatte to any organization looking for a reliable technology partner.",
+    image: reviewer3,
     accent: "periwinkle"
   },
   {
-    name: "Elena Rostova",
-    role: "Operations Director",
-    company: "Velo Logistics",
-    quote: "We partnered with Navigatte to integrate intelligent AI automation into our supply chain database. The results were immediate: invoice extraction errors dropped to near zero, saving us hundreds of hours weekly.",
-    image: reviewer3,
+    name: "Chairman",
+    role: "Bihar Foundation",
+    company: "Kolkata Chapter",
+    quote: "The team delivered a clean, modern website that reflects our vision beautifully. Their professionalism, attention to detail, and timely delivery made the entire experience smooth and enjoyable.",
+    image: reviewer2,
     accent: "orchid"
   }
 ];
