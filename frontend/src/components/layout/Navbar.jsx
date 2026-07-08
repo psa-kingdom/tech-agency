@@ -32,7 +32,7 @@ const Navbar = () => {
                 data-testid="nav-services-dropdown-trigger"
                 className="flex items-center gap-1 px-4 py-2 rounded-navitems text-sm text-ash hover:text-cloud hover:bg-white/5 transition-colors duration-200"
               >
-                Services
+                Solutions
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
             </DropdownMenuTrigger>
@@ -103,7 +103,7 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-1 mt-10">
               <p className="font-mono-label text-[10px] text-fog px-3 mb-2">
-                Services
+                Solutions
               </p>
               {SERVICES.map((s) => (
                 <SheetClose asChild key={s.slug}>
