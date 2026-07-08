@@ -11,8 +11,8 @@ module.exports = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
-        card: '16px',
-        feature: '30px',
+        card: '10px',
+        feature: '12px',
         pill: '9999px'
       },
       fontFamily: {
