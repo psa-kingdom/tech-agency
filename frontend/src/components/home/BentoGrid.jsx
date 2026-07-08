@@ -40,9 +40,9 @@ const LargeTile = ({ service, index }) => {
         className={`group h-full flex flex-col border border-white/10 rounded-feature p-8 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
       >
         {/* Background Layers */}
-        <div className="absolute inset-0 bg-graphite/60 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20" />
+        <div className="absolute inset-0 bg-graphite/60 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20" />
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
           style={{ backgroundImage: `url(${grainyBg})` }}
         />
 
@@ -97,9 +97,9 @@ const SmallTile = ({ service, index }) => {
         className={`group flex items-start gap-4 h-full border border-white/10 rounded-feature p-6 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
       >
         {/* Background Layers */}
-        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20" />
+        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20" />
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
           style={{ backgroundImage: `url(${grainyBg})` }}
         />
 

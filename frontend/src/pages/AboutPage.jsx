@@ -159,11 +159,11 @@ const AboutPage = () => {
                   }`}
                 >
                   {/* Background Layers */}
-                  <div className={`absolute inset-0 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20 ${
+                  <div className={`absolute inset-0 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20 ${
                     isFuture ? "bg-gradient-to-br from-graphite/40 to-iris/5" : "bg-graphite/40"
                   }`} />
                   <div
-                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
                     style={{ backgroundImage: `url(${grainyBg})` }}
                   />
 
