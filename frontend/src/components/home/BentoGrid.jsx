@@ -50,8 +50,7 @@ const LargeTile = ({ service, index }) => {
           <Icon className={`w-6 h-6 ${accent.iconText}`} />
         </div>
         <h3 className="font-display font-light text-2xl text-cloud">{service.tileTitle}</h3>
-        <p className="mt-2 text-base font-light text-cloud/90">{service.tileHeadline}</p>
-        <p className="mt-3 text-sm text-ash leading-relaxed flex-1">{service.tileDescription}</p>
+        <p className="mt-2 text-base font-light text-cloud/90 flex-1">{service.tileHeadline}</p>
         
         {service.capabilities && (
           <div className="mt-6 flex flex-wrap gap-1.5">
