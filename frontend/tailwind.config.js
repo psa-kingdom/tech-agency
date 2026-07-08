@@ -16,8 +16,8 @@ module.exports = {
         pill: '9999px'
       },
       fontFamily: {
-        display: ['Fraunces', 'serif'],
-        sans: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        display: ['"Playfair Display"', 'serif'],
+        sans: ['Outfit', 'ui-sans-serif', 'sans-serif'],
         mono: ['"Roboto Mono"', 'ui-monospace', 'monospace']
       },
       maxWidth: {
