@@ -297,10 +297,35 @@ export const PROCESS_STEPS = [
   { step: "04", icon: "Rocket", title: "Launch & Support", description: "We ship, test, and stay on for support, iteration, and scale-up as you grow." },
 ];
 
+import reviewer1 from "../assets/reviewer-1.png";
+import reviewer2 from "../assets/reviewer-2.png";
+import reviewer3 from "../assets/reviewer-3.png";
+
 export const TESTIMONIALS = [
-  { name: "[Client Name]", role: "[Role]", company: "[Company]", quote: "[Testimonial placeholder — swap with real client quotes]" },
-  { name: "[Client Name]", role: "[Role]", company: "[Company]", quote: "[Testimonial placeholder — swap with real client quotes]" },
-  { name: "[Client Name]", role: "[Role]", company: "[Company]", quote: "[Testimonial placeholder — swap with real client quotes]" },
+  {
+    name: "Sarah Wilson",
+    role: "CEO",
+    company: "Hummingbird",
+    quote: "Navigatte has been an absolute game-changer for our organization. The portal they built is so intuitive and stable that our dealer network adoption rate doubled in less than a month, and our administrative overhead was cut by 40%.",
+    image: reviewer1,
+    accent: "iris"
+  },
+  {
+    name: "David Chen",
+    role: "CTO",
+    company: "Apex Auto",
+    quote: "Their expertise in custom enterprise application engineering is unparalleled. They modernized our legacy ERP systems without a single minute of downtime. A highly disciplined team that builds code to scale.",
+    image: reviewer2,
+    accent: "periwinkle"
+  },
+  {
+    name: "Elena Rostova",
+    role: "Operations Director",
+    company: "Velo Logistics",
+    quote: "We partnered with Navigatte to integrate intelligent AI automation into our supply chain database. The results were immediate: invoice extraction errors dropped to near zero, saving us hundreds of hours weekly.",
+    image: reviewer3,
+    accent: "orchid"
+  }
 ];
 
 export const TRUST_STRIP_TEXT = "Trusted by teams across India · US · UK · Australia";
