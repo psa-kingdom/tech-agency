@@ -301,6 +301,15 @@ import reviewer1 from "../assets/reviewer-1.jpg";
 import reviewer2 from "../assets/reviewer-2.jpg";
 import reviewer3 from "../assets/reviewer-3.png";
 
+import indManufacturing from "../assets/ind-manufacturing.png";
+import indAutomotive from "../assets/ind-automotive.png";
+import indRetail from "../assets/ind-retail.png";
+import indHealthcare from "../assets/ind-healthcare.png";
+import indLogistics from "../assets/ind-logistics.png";
+import indFinance from "../assets/ind-finance.png";
+import indProfessional from "../assets/ind-professional.png";
+import indNonprofit from "../assets/ind-nonprofit.png";
+
 export const TESTIMONIALS = [
   {
     name: "Prem Suman",
@@ -335,49 +344,57 @@ export const INDUSTRIES = [
     slug: "manufacturing",
     icon: "Factory",
     title: "Manufacturing",
-    description: "Improve operational efficiency, process visibility, production planning, compliance, and enterprise integration."
+    description: "Improve operational efficiency, process visibility, production planning, compliance, and enterprise integration.",
+    image: indManufacturing
   },
   {
     slug: "automotive",
     icon: "Car",
     title: "Automotive",
-    description: "Enable dealer network transformation, inventory visibility, audit management, customer engagement, and operational intelligence."
+    description: "Enable dealer network transformation, inventory visibility, audit management, customer engagement, and operational intelligence.",
+    image: indAutomotive
   },
   {
     slug: "retail-fmcg",
     icon: "ShoppingBag",
     title: "Retail & FMCG",
-    description: "Drive supply chain efficiency, inventory optimization, customer experience, and real-time analytics."
+    description: "Drive supply chain efficiency, inventory optimization, customer experience, and real-time analytics.",
+    image: indRetail
   },
   {
     slug: "healthcare-pharma",
     icon: "Activity",
     title: "Healthcare & Pharmaceuticals",
-    description: "Enhance compliance, process automation, operational visibility, and data-driven decision-making."
+    description: "Enhance compliance, process automation, operational visibility, and data-driven decision-making.",
+    image: indHealthcare
   },
   {
     slug: "logistics-supply-chain",
     icon: "Truck",
     title: "Logistics & Supply Chain",
-    description: "Improve visibility, operational efficiency, workflow automation, and intelligent planning."
+    description: "Improve visibility, operational efficiency, workflow automation, and intelligent planning.",
+    image: indLogistics
   },
   {
     slug: "financial-services",
     icon: "Building",
     title: "Financial Services",
-    description: "Accelerate digital transformation, process modernization, analytics, and customer engagement."
+    description: "Accelerate digital transformation, process modernization, analytics, and customer engagement.",
+    image: indFinance
   },
   {
     slug: "professional-services",
     icon: "Briefcase",
     title: "Professional Services",
-    description: "Empower service organizations with intelligent workflows, CRM solutions, automation, and operational excellence."
+    description: "Empower service organizations with intelligent workflows, CRM solutions, automation, and operational excellence.",
+    image: indProfessional
   },
   {
     slug: "non-profit-associations",
     icon: "Users",
     title: "Non-Profit & Associations",
-    description: "Build member-centric platforms, engagement systems, donor management solutions, and digital ecosystems."
+    description: "Build member-centric platforms, engagement systems, donor management solutions, and digital ecosystems.",
+    image: indNonprofit
   }
 ];
 

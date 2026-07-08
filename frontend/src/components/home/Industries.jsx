@@ -11,7 +11,6 @@ import {
   Users,
 } from "lucide-react";
 import { INDUSTRIES } from "@/data/siteData";
-import grainyBg from "../../assets/grainy-gradient.jpg";
 
 const ICONS = {
   Factory,
@@ -54,8 +53,8 @@ const Industries = () => {
                 {/* Background Layers */}
                 <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20" />
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
-                  style={{ backgroundImage: `url(${grainyBg})` }}
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-35 transition-opacity duration-500 rounded-feature -z-10"
+                  style={{ backgroundImage: `url(${ind.image})` }}
                 />
 
                 <div className="w-10 h-10 rounded-lg bg-iris/15 flex items-center justify-center mb-5 shrink-0 transition-transform duration-300 group-hover:scale-110 relative z-10">
