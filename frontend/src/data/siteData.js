@@ -1,7 +1,7 @@
 // Central content store — separated from markup so a future CMS/admin panel
 // can plug in without a rewrite (per master_prompt Phase 2 tech notes).
 
-export const AGENCY_NAME = "Altios Labs";
+export const AGENCY_NAME = "Navigatte";
 export const CTA_LINK = "https://cal.com/souravdash";
 export const CONTACT_EMAIL = "srv.uxd@gmail.com";
 
