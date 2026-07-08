@@ -41,7 +41,7 @@ const Testimonials = () => {
         <div className="text-center max-w-2xl mx-auto">
           <span className="font-mono-label text-[11px] text-ash">Testimonials</span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-light text-cloud leading-[0.95] text-balance">
-            Trusted by Leaders
+            What Our Clients Say
           </h2>
         </div>
 
@@ -71,7 +71,7 @@ const Testimonials = () => {
                     <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
                       <Quote className="w-4 h-4 text-iris" />
                     </div>
-                    <blockquote className="text-lg sm:text-xl md:text-2xl font-display font-light text-cloud leading-relaxed text-balance">
+                    <blockquote className="text-base sm:text-lg md:text-xl font-display font-light text-cloud leading-relaxed text-balance">
                       "{current.quote}"
                     </blockquote>
                   </div>

@@ -297,17 +297,17 @@ export const PROCESS_STEPS = [
   { step: "04", icon: "Rocket", title: "Launch & Support", description: "We ship, test, and stay on for support, iteration, and scale-up as you grow." },
 ];
 
-import reviewer1 from "../assets/reviewer-1.png";
-import reviewer2 from "../assets/reviewer-2.png";
+import reviewer1 from "../assets/reviewer-1.jpg";
+import reviewer2 from "../assets/reviewer-2.jpg";
 import reviewer3 from "../assets/reviewer-3.png";
 
 export const TESTIMONIALS = [
   {
-    name: "Managing Partner",
-    role: "Financial Advisory",
+    name: "Prem Suman",
+    role: "Managing Partner",
     company: "P Suman & Associates",
     quote: "Navigatte exceeded our expectations by delivering a website that reflects the professionalism and credibility of our firm. They took the time to understand our brand, provided valuable recommendations throughout the project, and created a fast, intuitive, and polished digital experience. Their attention to detail, technical expertise, and proactive communication made the entire engagement seamless. We look forward to working with them again on future digital initiatives.",
-    image: reviewer1,
+    image: reviewer2,
     accent: "iris"
   },
   {
@@ -319,11 +319,11 @@ export const TESTIMONIALS = [
     accent: "periwinkle"
   },
   {
-    name: "Chairman",
-    role: "Bihar Foundation",
-    company: "Kolkata Chapter",
+    name: "Nishant Kumar",
+    role: "Chairman",
+    company: "Bihar Foundation – Kolkata Chapter",
     quote: "The team delivered a clean, modern website that reflects our vision beautifully. Their professionalism, attention to detail, and timely delivery made the entire experience smooth and enjoyable.",
-    image: reviewer2,
+    image: reviewer1,
     accent: "orchid"
   }
 ];
