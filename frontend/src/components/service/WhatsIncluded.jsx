@@ -7,7 +7,7 @@ const WhatsIncluded = ({ items }) => {
     <section className="bg-abyss border-t border-white/10">
       <div className="max-w-content mx-auto px-6 py-20 md:py-24">
         <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-display font-light text-cloud leading-[0.95] text-balance">
-          What's Included
+          Core Capabilities
         </h2>
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

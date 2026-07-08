@@ -7,7 +7,6 @@ import {
   Award,
   BarChart3,
   Handshake,
-  ArrowRight,
   Sparkles,
   Database,
   ShieldAlert,
@@ -46,25 +45,50 @@ const AboutPage = () => {
     whyNavigatte,
   } = ABOUT_CONTENT;
 
+  const heroContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const heroItemVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 90,
+        damping: 16,
+      },
+    },
+  };
+
   return (
     <div data-testid="about-page" className="bg-obsidian text-cloud min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-iris/[0.08] via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-content mx-auto px-6 text-center relative z-10">
+        <motion.div
+          variants={heroContainerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-content mx-auto px-6 text-center relative z-10"
+        >
           <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={heroItemVariants}
             className="inline-block font-mono-label text-[11px] text-ash bg-white/[0.06] border border-white/10 rounded-pill px-4 py-2"
           >
             About Us
           </motion.span>
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[1.05] text-balance max-w-4xl mx-auto"
+            variants={heroItemVariants}
+            className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-display font-light leading-[1.05] text-cloud text-balance max-w-4xl mx-auto"
           >
             {aboutNavigatte.title}
           </motion.h1>
@@ -72,15 +96,13 @@ const AboutPage = () => {
             {aboutNavigatte.paragraphs.map((p, index) => (
               <motion.p
                 key={index}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 + index * 0.05, ease: "easeOut" }}
+                variants={heroItemVariants}
               >
                 {p}
               </motion.p>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Vision & Mission Section */}
@@ -88,15 +110,15 @@ const AboutPage = () => {
         <div className="max-w-content mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Vision */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-graphite/40 border border-white/10 rounded-feature p-8 md:p-10 flex flex-col justify-between hover:border-iris/25 transition-colors duration-300"
+            className="bg-graphite/40 border border-white/10 rounded-feature p-8 md:p-10 flex flex-col justify-between hover:border-iris/25 transition-colors duration-300 bg-graphite/5"
           >
             <div>
               <div className="w-12 h-12 rounded-xl bg-iris/15 flex items-center justify-center mb-6">
-                <Lightbulb className="w-6 h-6 text-iris" />
+                <Lightbulb className="w-6 h-6 text-iris animate-pulse" />
               </div>
               <h2 className="text-2xl md:text-3xl font-display font-light text-cloud leading-tight">
                 {vision.title}
@@ -109,11 +131,11 @@ const AboutPage = () => {
 
           {/* Mission */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-graphite/40 border border-white/10 rounded-feature p-8 md:p-10 flex flex-col justify-between hover:border-periwinkle/25 transition-colors duration-300"
+            className="bg-graphite/40 border border-white/10 rounded-feature p-8 md:p-10 flex flex-col justify-between hover:border-periwinkle/25 transition-colors duration-300 bg-graphite/5"
           >
             <div>
               <div className="w-12 h-12 rounded-xl bg-periwinkle/15 flex items-center justify-center mb-6">
@@ -143,18 +165,27 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08 } }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {platforms.items.map((plat, i) => {
               const Icon = PLATFORM_ICONS[plat.name] || Sparkles;
               const isFuture = plat.name.toLowerCase().includes("future");
               return (
                 <motion.div
                   key={plat.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-                  className={`group relative overflow-hidden rounded-feature p-8 border transition-all duration-300 hover:-translate-y-1 z-0 border-white/10 ${
+                  variants={{
+                    hidden: { opacity: 0, y: 24 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 90, damping: 16 } }
+                  }}
+                  className={`group relative overflow-hidden rounded-feature p-8 border transition-all duration-300 hover:-translate-y-1.5 z-0 border-white/10 bg-graphite/5 ${
                     isFuture ? "hover:border-iris/40" : "hover:border-white/20"
                   }`}
                 >
@@ -163,7 +194,7 @@ const AboutPage = () => {
                     isFuture ? "bg-gradient-to-br from-graphite/40 to-iris/5" : "bg-graphite/40"
                   }`} />
                   <div
-                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
+                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-[0.25] transition-opacity duration-500 rounded-feature -z-10"
                     style={{ backgroundImage: `url(${grainyBg})` }}
                   />
 
@@ -172,14 +203,14 @@ const AboutPage = () => {
                   }`}>
                     <Icon className={`w-5 h-5 relative z-10 ${isFuture ? "text-iris" : "text-cloud/90"}`} />
                   </div>
-                  <h3 className="text-lg font-medium text-cloud relative z-10">{plat.name}</h3>
+                  <h3 className="text-lg font-medium text-cloud relative z-10 group-hover:text-white transition-colors duration-200">{plat.name}</h3>
                   <p className="mt-3 text-sm text-ash leading-relaxed relative z-10">
                     {plat.description}
                   </p>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -193,44 +224,39 @@ const AboutPage = () => {
             </h2>
           </div>
 
-          <div className="relative">
-            {/* Center Line for desktop */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+            {approach.steps.map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -6 }}
+                className="group relative bg-graphite/40 border border-white/10 rounded-feature p-8 hover:bg-graphite/60 hover:border-iris/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(132,125,255,0.06)] flex flex-col h-full overflow-hidden"
+              >
+                {/* Glow indicator source */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-iris/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-            <div className="space-y-12 lg:space-y-20 relative">
-              {approach.steps.map((step, i) => {
-                const isEven = i % 2 === 0;
-                return (
-                  <motion.div
-                    key={step.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className={`flex flex-col lg:flex-row items-center gap-6 lg:gap-0 relative ${
-                      isEven ? "" : "lg:flex-row-reverse"
-                    }`}
-                  >
-                    {/* Visual node on timeline */}
-                    <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-abyss border-2 border-iris items-center justify-center z-10">
-                      <span className="text-xs font-mono font-medium text-iris">0{i + 1}</span>
-                    </div>
+                {/* Number Badge */}
+                <div className="text-4xl sm:text-5xl font-display font-extralight text-iris/20 group-hover:text-iris/50 transition-colors duration-300 mb-6 select-none">
+                  0{i + 1}
+                </div>
 
-                    {/* Content Block */}
-                    <div className={`w-full lg:w-1/2 ${isEven ? "lg:pr-16 lg:text-right" : "lg:pl-16 lg:text-left"}`}>
-                      <span className="inline-block lg:hidden font-mono text-xs text-iris mb-2">STEP 0{i + 1}</span>
-                      <h3 className="text-xl md:text-2xl font-display font-light text-cloud">{step.title}</h3>
-                      <p className="mt-3 text-sm md:text-base text-ash font-light leading-relaxed max-w-md mx-auto lg:mx-0">
-                        {step.description}
-                      </p>
-                    </div>
+                {/* Title */}
+                <h3 className="text-lg font-medium text-cloud group-hover:text-white transition-colors duration-200">
+                  {step.title}
+                </h3>
 
-                    {/* Empty block to balance layout on desktop */}
-                    <div className="hidden lg:block w-1/2" />
-                  </motion.div>
-                );
-              })}
-            </div>
+                {/* Description */}
+                <p className="mt-3 text-sm text-ash leading-relaxed">
+                  {step.description}
+                </p>
+
+                {/* Decorative bottom border slide */}
+                <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-iris scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -245,23 +271,32 @@ const AboutPage = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08 } }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {whyNavigatte.reasons.map((reason, i) => {
               const Icon = REASON_ICONS[reason.title] || Award;
               return (
                 <motion.div
                   key={reason.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-                  className="flex gap-4"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 90, damping: 16 } }
+                  }}
+                  className="flex gap-4 group p-3 rounded-xl hover:bg-white/[0.02] border border-transparent hover:border-white/5 transition-all duration-350"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                     <Icon className="w-5 h-5 text-iris" />
                   </div>
                   <div>
-                    <h3 className="text-base font-medium text-cloud">{reason.title}</h3>
+                    <h3 className="text-base font-medium text-cloud group-hover:text-white transition-colors duration-200">{reason.title}</h3>
                     <p className="mt-2 text-sm text-ash leading-relaxed font-light">
                       {reason.description}
                     </p>
@@ -269,7 +304,7 @@ const AboutPage = () => {
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import api from "@/lib/api";
 import ProjectModal from "@/components/shared/ProjectModal";
 import GetInTouch from "@/components/layout/GetInTouch";
@@ -28,8 +28,9 @@ const ProjectsPage = () => {
 
   return (
     <div data-testid="projects-page">
-      <section className="bg-obsidian border-b border-white/10">
-        <div className="max-w-content mx-auto px-6 pt-16 md:pt-20 pb-14 text-center">
+      <section className="bg-obsidian border-b border-white/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-iris/[0.04] via-transparent to-transparent pointer-events-none" />
+        <div className="max-w-content mx-auto px-6 pt-16 md:pt-20 pb-14 text-center relative z-10">
           <span className="font-mono-label text-[11px] text-ash">Our Work</span>
           <h1
             data-testid="projects-page-headline"
@@ -43,21 +44,31 @@ const ProjectsPage = () => {
           </p>
 
           {tags.length > 1 && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-              {tags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setActiveTag(tag)}
-                  data-testid={`projects-filter-${tag.replace(/\s+/g, "-").toLowerCase()}`}
-                  className={`font-mono-label text-[11px] rounded-pill px-4 py-2 border transition-colors duration-200 ${
-                    activeTag === tag
-                      ? "bg-pure text-void border-pure"
-                      : "text-ash border-white/15 hover:border-white/30 hover:text-cloud"
-                  }`}
-                >
-                  {tag}
-                </button>
-              ))}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2 relative">
+              {tags.map((tag) => {
+                const isActive = activeTag === tag;
+                return (
+                  <button
+                    key={tag}
+                    onClick={() => setActiveTag(tag)}
+                    data-testid={`projects-filter-${tag.replace(/\s+/g, "-").toLowerCase()}`}
+                    className={`font-mono-label text-[11px] rounded-pill px-4 py-2 border relative z-10 transition-colors duration-250 ${
+                      isActive
+                        ? "text-void border-transparent font-medium"
+                        : "text-ash border-white/15 hover:border-white/30 hover:text-cloud"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeFilterPill"
+                        className="absolute inset-0 bg-pure rounded-pill -z-10 shadow-lg"
+                        transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                      />
+                    )}
+                    {tag}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
@@ -74,46 +85,49 @@ const ProjectsPage = () => {
               No projects found.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((project, i) => (
-                <motion.button
-                  key={project.id}
-                  onClick={() => setSelected(project)}
-                  data-testid={`project-card-${project.id}`}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: (i % 6) * 0.05, ease: "easeOut" }}
-                  className="group text-left rounded-feature overflow-hidden border border-white/10 hover:border-iris/40 bg-graphite/40 transition-colors duration-300"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={project.image_url}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      {project.tags?.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono-label text-[9px] text-ash bg-white/5 border border-white/10 rounded-pill px-2.5 py-1"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <AnimatePresence mode="popLayout">
+                {filtered.map((project, i) => (
+                  <motion.button
+                    layout
+                    key={project.id}
+                    onClick={() => setSelected(project)}
+                    data-testid={`project-card-${project.id}`}
+                    initial={{ opacity: 0, scale: 0.95, y: 16 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 16 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="group text-left rounded-feature overflow-hidden border border-white/10 hover:border-iris/40 bg-graphite/40 transition-colors duration-300 shadow-sm hover:shadow-[0_0_30px_rgba(132,125,255,0.02)]"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-zinc-950">
+                      <img
+                        src={project.image_url}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
-                    <h3 className="text-lg font-display font-light text-cloud">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-ash leading-relaxed line-clamp-2">
-                      {project.description}
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
+                    <div className="p-5">
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {project.tags?.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="font-mono-label text-[9px] text-ash bg-white/5 border border-white/10 rounded-pill px-2.5 py-1 group-hover:bg-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-lg font-display font-light text-cloud group-hover:text-white transition-colors duration-250">
+                        {project.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-ash leading-relaxed line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+                  </motion.button>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           )}
         </div>
       </section>

@@ -5,12 +5,15 @@ import { TESTIMONIALS } from "@/data/siteData";
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const [direction, setDirection] = React.useState(1); // 1 = next, -1 = prev
 
   const nextTestimonial = () => {
+    setDirection(1);
     setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
   };
 
   const prevTestimonial = () => {
+    setDirection(-1);
     setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
   };
 
@@ -35,6 +38,30 @@ const Testimonials = () => {
 
   const stack = getStackColors(activeIndex);
 
+  // Animation variants for horizontal carousel sliding
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 30 : -30,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 26 },
+        opacity: { duration: 0.3 }
+      }
+    },
+    exit: (dir) => ({
+      x: dir > 0 ? -30 : 30,
+      opacity: 0,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 26 },
+        opacity: { duration: 0.25 }
+      }
+    })
+  };
+
   return (
     <section className="bg-abyss border-t border-white/10 overflow-hidden">
       <div className="max-w-content mx-auto px-6 py-20 md:py-28">
@@ -49,20 +76,27 @@ const Testimonials = () => {
         <div className="relative max-w-4xl mx-auto mt-20 px-2 sm:px-4">
           
           {/* Back Stacked Card */}
-          <div className={`absolute left-8 right-8 -top-4 h-full rounded-feature -z-20 transform scale-[0.95] opacity-50 blur-[0.5px] transition-all duration-500 border ${stack.back.bg} ${stack.back.border}`} />
+          <motion.div
+            layout
+            className={`absolute left-8 right-8 -top-4 h-full rounded-feature -z-20 transform scale-[0.95] opacity-50 blur-[0.5px] border transition-all duration-500 ${stack.back.bg} ${stack.back.border}`}
+          />
           
           {/* Middle Stacked Card */}
-          <div className={`absolute left-4 right-4 -top-2 h-full rounded-feature -z-10 transform scale-[0.98] opacity-80 transition-all duration-500 border ${stack.middle.bg} ${stack.middle.border}`} />
+          <motion.div
+            layout
+            className={`absolute left-4 right-4 -top-2 h-full rounded-feature -z-10 transform scale-[0.98] opacity-80 border transition-all duration-500 ${stack.middle.bg} ${stack.middle.border}`}
+          />
 
           {/* Front Active Testimonial Card */}
-          <div className="relative overflow-hidden bg-black border border-white/10 rounded-feature min-h-[380px]">
-            <AnimatePresence mode="wait">
+          <div className="relative overflow-hidden bg-black border border-white/10 rounded-feature min-h-[380px] shadow-2xl">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
                 className="grid grid-cols-1 md:grid-cols-[1.25fr_0.75fr] gap-0 md:min-h-[380px]"
               >
                 {/* Left Side: Testimonial review text */}
@@ -105,7 +139,7 @@ const Testimonials = () => {
         <div className="mt-10 flex items-center justify-center gap-6">
           <button
             onClick={prevTestimonial}
-            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-cloud hover:border-white/30 flex items-center justify-center transition-all duration-200 active:scale-95"
+            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-cloud hover:border-white/30 flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -115,8 +149,11 @@ const Testimonials = () => {
             {TESTIMONIALS.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                onClick={() => {
+                  setDirection(idx > activeIndex ? 1 : -1);
+                  setActiveIndex(idx);
+                }}
+                className={`h-2 rounded-full transition-all duration-300 relative ${
                   activeIndex === idx ? "bg-iris w-6" : "bg-white/25 w-2 hover:bg-white/40"
                 }`}
                 aria-label={`Go to testimonial ${idx + 1}`}
@@ -126,7 +163,7 @@ const Testimonials = () => {
 
           <button
             onClick={nextTestimonial}
-            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-cloud hover:border-white/30 flex items-center justify-center transition-all duration-200 active:scale-95"
+            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-cloud hover:border-white/30 flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />

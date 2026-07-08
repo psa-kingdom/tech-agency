@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -16,48 +16,99 @@ import grainyBg from "../../assets/grainy-gradient.jpg";
 const ICONS = { Globe, Bot, LayoutDashboard, Boxes, Network, Database };
 
 const ACCENT_STYLES = {
-  iris: { iconBg: "bg-iris/15", iconText: "text-iris", border: "hover:border-iris/40" },
-  periwinkle: { iconBg: "bg-periwinkle/15", iconText: "text-periwinkle", border: "hover:border-periwinkle/40" },
-  orchid: { iconBg: "bg-orchid/15", iconText: "text-orchid", border: "hover:border-orchid/40" },
-  deepIris: { iconBg: "bg-iris-deep/20", iconText: "text-iris-deep", border: "hover:border-iris-deep/40" },
-  paleIris: { iconBg: "bg-iris-pale/15", iconText: "text-iris-pale", border: "hover:border-iris-pale/40" },
+  iris: { 
+    iconBg: "bg-iris/15", 
+    iconText: "text-iris", 
+    border: "hover:border-iris/40 hover:shadow-[0_0_30px_rgba(132,125,255,0.05)]",
+    glowColor: "rgba(132, 125, 255, 0.15)"
+  },
+  periwinkle: { 
+    iconBg: "bg-periwinkle/15", 
+    iconText: "text-periwinkle", 
+    border: "hover:border-periwinkle/40 hover:shadow-[0_0_30px_rgba(144,184,240,0.05)]",
+    glowColor: "rgba(144, 184, 240, 0.15)"
+  },
+  orchid: { 
+    iconBg: "bg-orchid/15", 
+    iconText: "text-orchid", 
+    border: "hover:border-orchid/40 hover:shadow-[0_0_30px_rgba(221,144,216,0.05)]",
+    glowColor: "rgba(221, 144, 216, 0.15)"
+  },
+  deepIris: { 
+    iconBg: "bg-iris-deep/20", 
+    iconText: "text-iris-deep", 
+    border: "hover:border-iris-deep/40 hover:shadow-[0_0_30px_rgba(75,73,170,0.08)]",
+    glowColor: "rgba(75, 73, 170, 0.15)"
+  },
+  paleIris: { 
+    iconBg: "bg-iris-pale/15", 
+    iconText: "text-iris-pale", 
+    border: "hover:border-iris-pale/40 hover:shadow-[0_0_30px_rgba(209,201,255,0.05)]",
+    glowColor: "rgba(209, 201, 255, 0.12)"
+  },
 };
 
 const LargeTile = ({ service, index }) => {
   const Icon = ICONS[service.icon];
   const accent = ACCENT_STYLES[service.accent] || ACCENT_STYLES.iris;
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
       className="h-full"
     >
       <Link
         to={`/services/${service.slug}`}
         data-testid={`bento-tile-${service.slug}`}
-        className={`group h-full flex flex-col border border-white/10 rounded-feature p-8 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className={`group h-full flex flex-col border border-white/10 rounded-feature p-8 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0 bg-graphite/10`}
       >
+        {/* Cursor Tracking Radial Glow */}
+        {hovered && (
+          <div
+            className="absolute -z-10 pointer-events-none rounded-feature opacity-100 transition-opacity duration-300"
+            style={{
+              width: "350px",
+              height: "350px",
+              background: `radial-gradient(circle, ${accent.glowColor} 0%, transparent 70%)`,
+              left: `${coords.x - 175}px`,
+              top: `${coords.y - 175}px`,
+            }}
+          />
+        )}
+
         {/* Background Layers */}
-        <div className="absolute inset-0 bg-graphite/60 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20" />
+        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-5 transition-opacity duration-500 rounded-feature -z-20" />
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-[0.18] transition-opacity duration-500 rounded-feature -z-10"
           style={{ backgroundImage: `url(${grainyBg})` }}
         />
 
-        <div className={`w-12 h-12 rounded-xl ${accent.iconBg} flex items-center justify-center mb-6`}>
+        <div className={`w-12 h-12 rounded-xl ${accent.iconBg} flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110`}>
           <Icon className={`w-6 h-6 ${accent.iconText}`} />
         </div>
-        <h3 className="font-display font-light text-2xl text-cloud">{service.tileTitle}</h3>
-        <p className="mt-2 text-base font-light text-cloud/90 flex-1">{service.tileHeadline}</p>
+        <h3 className="font-display font-light text-2xl text-cloud group-hover:text-white transition-colors duration-200">{service.tileTitle}</h3>
+        <p className="mt-2 text-base font-light text-cloud/85 flex-1">{service.tileHeadline}</p>
         
         {service.capabilities && (
           <div className="mt-6 flex flex-wrap gap-1.5">
-            {service.capabilities.slice(0, 4).map((cap) => (
+            {service.capabilities.slice(0, 4).map((cap, capIdx) => (
               <span
                 key={cap}
-                className="font-mono-label text-[9px] text-ash bg-white/5 border border-white/10 rounded-pill px-2.5 py-1"
+                className="font-mono-label text-[9px] text-ash bg-white/5 border border-white/10 rounded-pill px-2.5 py-1 transition-all duration-200 group-hover:bg-white/[0.08] group-hover:text-cloud"
+                style={{ transitionDelay: `${capIdx * 30}ms` }}
               >
                 {cap}
               </span>
@@ -70,7 +121,7 @@ const LargeTile = ({ service, index }) => {
           </div>
         )}
 
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:gap-2.5 transition-all duration-200">
+        <span className="mt-6 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:text-white group-hover:gap-2.5 transition-all duration-200">
           Explore Solution
           <ArrowRight className="w-3.5 h-3.5" />
         </span>
@@ -82,39 +133,65 @@ const LargeTile = ({ service, index }) => {
 const SmallTile = ({ service, index }) => {
   const Icon = ICONS[service.icon];
   const accent = ACCENT_STYLES[service.accent] || ACCENT_STYLES.iris;
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
       className="h-full"
     >
       <Link
         to={`/services/${service.slug}`}
         data-testid={`bento-tile-${service.slug}`}
-        className={`group flex items-start gap-4 h-full border border-white/10 rounded-feature p-6 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className={`group flex items-start gap-4 h-full border border-white/10 rounded-feature p-6 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0 bg-graphite/10`}
       >
+        {/* Cursor Tracking Radial Glow */}
+        {hovered && (
+          <div
+            className="absolute -z-10 pointer-events-none rounded-feature opacity-100 transition-opacity duration-300"
+            style={{
+              width: "250px",
+              height: "250px",
+              background: `radial-gradient(circle, ${accent.glowColor} 0%, transparent 70%)`,
+              left: `${coords.x - 125}px`,
+              top: `${coords.y - 125}px`,
+            }}
+          />
+        )}
+
         {/* Background Layers */}
-        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-10 transition-opacity duration-500 rounded-feature -z-20" />
+        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-5 transition-opacity duration-500 rounded-feature -z-20" />
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-feature -z-10"
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-[0.18] transition-opacity duration-500 rounded-feature -z-10"
           style={{ backgroundImage: `url(${grainyBg})` }}
         />
 
-        <div className={`w-10 h-10 rounded-lg ${accent.iconBg} flex items-center justify-center shrink-0`}>
+        <div className={`w-10 h-10 rounded-lg ${accent.iconBg} flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110`}>
           <Icon className={`w-5 h-5 ${accent.iconText}`} />
         </div>
         <div className="flex-1 flex flex-col h-full z-10">
-          <h3 className="font-display font-light text-lg text-cloud">{service.tileTitle}</h3>
+          <h3 className="font-display font-light text-lg text-cloud group-hover:text-white transition-colors duration-200">{service.tileTitle}</h3>
           <p className="mt-1.5 text-sm text-ash leading-relaxed flex-1">{service.tileHeadline}</p>
           
           {service.capabilities && (
             <div className="mt-4 flex flex-wrap gap-1">
-              {service.capabilities.slice(0, 3).map((cap) => (
+              {service.capabilities.slice(0, 3).map((cap, capIdx) => (
                 <span
                   key={cap}
-                  className="font-mono-label text-[8px] text-ash bg-white/5 border border-white/10 rounded-pill px-2 py-0.5"
+                  className="font-mono-label text-[8px] text-ash bg-white/5 border border-white/10 rounded-pill px-2 py-0.5 transition-all duration-200 group-hover:bg-white/[0.08] group-hover:text-cloud"
+                  style={{ transitionDelay: `${capIdx * 25}ms` }}
                 >
                   {cap}
                 </span>
@@ -127,7 +204,7 @@ const SmallTile = ({ service, index }) => {
             </div>
           )}
 
-          <span className="mt-4 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:gap-2.5 transition-all duration-200">
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm text-cloud group-hover:text-white group-hover:gap-2.5 transition-all duration-200">
             Explore Solution
             <ArrowRight className="w-3.5 h-3.5" />
           </span>

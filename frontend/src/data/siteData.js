@@ -53,7 +53,9 @@ export const SERVICES = [
     ],
     whoItsFor: "Businesses looking to build next-generation web presences, customer self-service portals, or robust membership ecosystems.",
     faq: [
-      { q: "Can you migrate our legacy portal without disrupting operations?", a: "Yes — we plan migrations in parallel phases to ensure seamless transition with zero service disruption." }
+      { q: "Can you migrate our legacy portal without disrupting operations?", a: "Yes — we plan migrations in parallel phases to ensure seamless transition with zero service disruption." },
+      { q: "Will our website be fast and optimized for search engines (SEO)?", a: "Absolutely. We build with modern web performance standards, clean semantic code, and optimized assets, ensuring fast page load speeds and native SEO readiness out of the box." },
+      { q: "Do you integrate Content Management Systems (CMS)?", a: "Yes, we integrate easy-to-use headless or traditional CMS options (like Contentful or custom admin panels) so your marketing team can update pages without developer assistance." }
     ]
   },
   {
@@ -98,7 +100,9 @@ export const SERVICES = [
     ],
     whoItsFor: "Operations teams, enterprises replacing legacy database programs, and founders launching a SaaS.",
     faq: [
-      { q: "How do you handle integrations with existing software?", a: "We build secure REST or GraphQL APIs to connect custom modules with your legacy services." }
+      { q: "How do you handle integrations with existing software?", a: "We build secure REST or GraphQL APIs to connect custom modules with your legacy services." },
+      { q: "Is our data secure and compliant with privacy regulations?", a: "Yes. We implement robust security protocols, including end-to-end encryption, multi-factor authentication (MFA), role-based access control, and compliance checks suited for your industry." },
+      { q: "How does the system scale as our user base grows?", a: "We engineer systems using scalable cloud infrastructure (like AWS serverless or Kubernetes containers) so they automatically adjust resources to handle transaction spikes seamlessly." }
     ]
   },
   {
@@ -143,7 +147,9 @@ export const SERVICES = [
     ],
     whoItsFor: "Support teams handling high ticket volumes, operations teams processing large sets of documents, and products adding AI features.",
     faq: [
-      { q: "How do you ensure data security with LLMs?", a: "We build using enterprise API contracts or private host models so your business data is never used for public training." }
+      { q: "How do you ensure data security with LLMs?", a: "We build using enterprise API contracts or private host models so your business data is never used for public training." },
+      { q: "How do you guarantee the accuracy of AI outputs?", a: "We implement strict validation filters, human-in-the-loop oversight checks, and thorough prompt-engineering guardrails to minimize hallucinations or errors." },
+      { q: "How long does it take to deploy a custom AI automation workflow?", a: "We typically deliver a working prototype in 3-4 weeks, with full enterprise integrations and production rollout completing within 8-12 weeks." }
     ]
   },
   {
@@ -192,7 +198,9 @@ export const SERVICES = [
     ],
     whoItsFor: "Product organizations scaling quickly, tech departments moving away from manual servers, and teams with strict compliance needs.",
     faq: [
-      { q: "Will cloud migration cause server downtime?", a: "No — we run blue-green deployments to ensure traffic shifts dynamically only after verification." }
+      { q: "Will cloud migration cause server downtime?", a: "No — we run blue-green deployments to ensure traffic shifts dynamically only after verification." },
+      { q: "How do you manage and reduce cloud hosting costs?", a: "We implement automated resource scheduling, configure auto-scaling parameters, clean up orphaned assets, and use serverless computing to keep costs optimized." },
+      { q: "Do you offer post-migration monitoring and alerts?", a: "Yes, we build centralized monitoring (using Prometheus, Grafana, or Datadog) to watch system performance and immediately alert on any anomalies." }
     ]
   },
   {
@@ -233,7 +241,9 @@ export const SERVICES = [
     ],
     whoItsFor: "Enterprises running legacy ERP modules or launching digital transformation campaigns.",
     faq: [
-      { q: "How do you validate data integrity during migration?", a: "We run automated checksum verification scripts at database transition checkpoints." }
+      { q: "How do you validate data integrity during migration?", a: "We run automated checksum verification scripts at database transition checkpoints." },
+      { q: "What is your approach to change management for employees?", a: "We provide interactive workshops, detailed onboarding manuals, and step-by-step video guides to ensure smooth transition and fast software adoption rates among your staff." },
+      { q: "What is the typical timeframe for a transformation project?", a: "Depending on scope, timelines run between 3 to 6 months, structured in sequential sprints so you receive incremental value early on." }
     ]
   },
   {
@@ -276,7 +286,9 @@ export const SERVICES = [
     ],
     whoItsFor: "C-level executives seeking a single source of truth, and finance teams replacing manual spreadsheets.",
     faq: [
-      { q: "Can you query data from multiple independent SaaS APIs?", a: "Yes — we build connectors to extract data from CRM, helpdesk, ads, and stripe APIs." }
+      { q: "Can you query data from multiple independent SaaS APIs?", a: "Yes — we build connectors to extract data from CRM, helpdesk, ads, and stripe APIs." },
+      { q: "How do you ensure the cleanliness of extracted data?", a: "We build automated profiling, schema validation, deduplication rules, and error flagging into our ETL pipelines to keep data records pristine." },
+      { q: "Do you support real-time data ingestion and streaming?", a: "Yes, we design real-time data streaming architectures (utilizing cloud event streams or webhooks) to feed analytics dashboards instantly." }
     ]
   }
 ];
