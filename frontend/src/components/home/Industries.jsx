@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { INDUSTRIES } from "@/data/siteData";
+import grainyBg from "../../assets/grainy-gradient.jpg";
 
 const ICONS = {
   Factory,
@@ -48,13 +49,20 @@ const Industries = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
                 data-testid={`industry-card-${ind.slug}`}
-                className="group flex flex-col bg-graphite/40 border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-iris/40 hover:-translate-y-1"
+                className="group flex flex-col border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-iris/40 hover:-translate-y-1 relative overflow-hidden z-0"
               >
-                <div className="w-10 h-10 rounded-lg bg-iris/15 flex items-center justify-center mb-5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                {/* Background Layers */}
+                <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20" />
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+                  style={{ backgroundImage: `url(${grainyBg})` }}
+                />
+
+                <div className="w-10 h-10 rounded-lg bg-iris/15 flex items-center justify-center mb-5 shrink-0 transition-transform duration-300 group-hover:scale-110 relative z-10">
                   <Icon className="w-5 h-5 text-iris" />
                 </div>
-                <h3 className="text-base font-medium text-cloud">{ind.title}</h3>
-                <p className="mt-2 text-sm text-ash leading-relaxed flex-1">
+                <h3 className="text-base font-medium text-cloud relative z-10">{ind.title}</h3>
+                <p className="mt-2 text-sm text-ash leading-relaxed flex-1 relative z-10">
                   {ind.description}
                 </p>
               </motion.div>

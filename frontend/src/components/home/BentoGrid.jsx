@@ -11,6 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { SERVICES } from "@/data/siteData";
+import grainyBg from "../../assets/grainy-gradient.jpg";
 
 const ICONS = { Globe, Bot, LayoutDashboard, Boxes, Network, Database };
 
@@ -36,8 +37,15 @@ const LargeTile = ({ service, index }) => {
       <Link
         to={`/services/${service.slug}`}
         data-testid={`bento-tile-${service.slug}`}
-        className={`group h-full flex flex-col bg-graphite/60 border border-white/10 rounded-feature p-8 transition-all duration-300 ${accent.border} hover:-translate-y-1`}
+        className={`group h-full flex flex-col border border-white/10 rounded-feature p-8 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
       >
+        {/* Background Layers */}
+        <div className="absolute inset-0 bg-graphite/60 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+          style={{ backgroundImage: `url(${grainyBg})` }}
+        />
+
         <div className={`w-12 h-12 rounded-xl ${accent.iconBg} flex items-center justify-center mb-6`}>
           <Icon className={`w-6 h-6 ${accent.iconText}`} />
         </div>
@@ -86,12 +94,19 @@ const SmallTile = ({ service, index }) => {
       <Link
         to={`/services/${service.slug}`}
         data-testid={`bento-tile-${service.slug}`}
-        className={`group flex items-start gap-4 h-full bg-graphite/40 border border-white/10 rounded-feature p-6 transition-all duration-300 ${accent.border} hover:-translate-y-1`}
+        className={`group flex items-start gap-4 h-full border border-white/10 rounded-feature p-6 transition-all duration-300 ${accent.border} hover:-translate-y-1 relative overflow-hidden z-0`}
       >
+        {/* Background Layers */}
+        <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-0 transition-opacity duration-500 rounded-feature -z-20" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+          style={{ backgroundImage: `url(${grainyBg})` }}
+        />
+
         <div className={`w-10 h-10 rounded-lg ${accent.iconBg} flex items-center justify-center shrink-0`}>
           <Icon className={`w-5 h-5 ${accent.iconText}`} />
         </div>
-        <div className="flex-1 flex flex-col h-full">
+        <div className="flex-1 flex flex-col h-full z-10">
           <h3 className="font-display font-light text-lg text-cloud">{service.tileTitle}</h3>
           <p className="mt-1.5 text-sm text-ash leading-relaxed flex-1">{service.tileHeadline}</p>
           
