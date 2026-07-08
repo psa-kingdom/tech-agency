@@ -16,7 +16,7 @@ module.exports = {
         pill: '9999px'
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
+        display: ['Outfit', 'sans-serif'],
         sans: ['Outfit', 'ui-sans-serif', 'sans-serif'],
         mono: ['"Roboto Mono"', 'ui-monospace', 'monospace']
       },
