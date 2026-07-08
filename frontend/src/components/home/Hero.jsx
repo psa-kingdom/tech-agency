@@ -16,15 +16,6 @@ const Hero = () => {
       <HeroBackgroundVideo />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-obsidian pointer-events-none z-[1]" />
       <div className="relative z-10 max-w-content mx-auto px-6 py-20 text-center w-full">
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          data-testid="hero-eyebrow"
-          className="inline-block font-mono-label text-[11px] text-cloud bg-black/40 backdrop-blur-md border border-white/20 rounded-pill px-4 py-2"
-        >
-          Software · AI · Automation
-        </motion.span>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
