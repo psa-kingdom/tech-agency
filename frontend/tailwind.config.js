@@ -64,6 +64,8 @@ module.exports = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
         },
+        pure: '#ffffff',
+        void: '#0f1011',
         obsidian: '#0f1011',
         abyss: '#090a0b',
         graphite: '#2e2e2e',
