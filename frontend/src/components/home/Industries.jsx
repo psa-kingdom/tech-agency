@@ -23,6 +23,57 @@ const ICONS = {
   Users,
 };
 
+const INDUSTRY_THEMES = {
+  "manufacturing": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(0, 179, 221, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(0, 179, 221, 0.4)",
+    iconBg: "rgba(0, 179, 221, 0.12)",
+    iconColor: "#00b3dd"
+  },
+  "automotive": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(221, 144, 216, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(221, 144, 216, 0.4)",
+    iconBg: "rgba(221, 144, 216, 0.12)",
+    iconColor: "#dd90d8"
+  },
+  "retail-fmcg": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(144, 184, 240, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(144, 184, 240, 0.4)",
+    iconBg: "rgba(144, 184, 240, 0.12)",
+    iconColor: "#90b8f0"
+  },
+  "healthcare-pharma": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(132, 125, 255, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(132, 125, 255, 0.4)",
+    iconBg: "rgba(132, 125, 255, 0.12)",
+    iconColor: "#847dff"
+  },
+  "logistics-supply-chain": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(132, 125, 255, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(132, 125, 255, 0.35)",
+    iconBg: "rgba(132, 125, 255, 0.12)",
+    iconColor: "#847dff"
+  },
+  "financial-services": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(245, 158, 11, 0.4)",
+    iconBg: "rgba(245, 158, 11, 0.12)",
+    iconColor: "#f59e0b"
+  },
+  "professional-services": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(236, 72, 153, 0.4)",
+    iconBg: "rgba(236, 72, 153, 0.12)",
+    iconColor: "#ec4899"
+  },
+  "non-profit-associations": {
+    gradient: "radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 65%)",
+    hoverBorder: "rgba(16, 185, 129, 0.4)",
+    iconBg: "rgba(16, 185, 129, 0.12)",
+    iconColor: "#10b981"
+  }
+};
+
 const Industries = () => {
   const containerVariants = {
     hidden: {},
@@ -68,22 +119,33 @@ const Industries = () => {
         >
           {INDUSTRIES.map((ind, i) => {
             const Icon = ICONS[ind.icon] || Briefcase;
+            const theme = INDUSTRY_THEMES[ind.slug] || INDUSTRY_THEMES["professional-services"];
             return (
               <motion.div
                 key={ind.slug}
                 variants={itemVariants}
                 data-testid={`industry-card-${ind.slug}`}
-                className="group flex flex-col border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-iris/40 hover:-translate-y-1.5 relative overflow-hidden z-0 bg-graphite/5"
+                className="group flex flex-col border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-[var(--hover-border)] hover:-translate-y-1.5 relative overflow-hidden z-0 bg-graphite/5"
+                style={{
+                  "--hover-border": theme.hoverBorder
+                }}
               >
                 {/* Background Layers */}
                 <div className="absolute inset-0 bg-graphite/40 group-hover:opacity-[0.03] transition-opacity duration-500 rounded-feature -z-20" />
+                
+                {/* Grainy Gradient Hover Layer */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-[0.22] transition-opacity duration-500 rounded-feature -z-10"
-                  style={{ backgroundImage: `url(${ind.image})` }}
+                  className="absolute inset-0 opacity-[0.12] group-hover:opacity-100 transition-opacity duration-500 rounded-feature -z-10"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E"), ${theme.gradient}`
+                  }}
                 />
 
-                <div className="w-10 h-10 rounded-lg bg-iris/15 flex items-center justify-center mb-5 shrink-0 transition-transform duration-350 group-hover:scale-110 relative z-10">
-                  <Icon className="w-5 h-5 text-iris" />
+                <div 
+                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 shrink-0 transition-transform duration-350 group-hover:scale-110 relative z-10"
+                  style={{ backgroundColor: theme.iconBg }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: theme.iconColor }} />
                 </div>
                 <h3 className="text-base font-medium text-cloud relative z-10 group-hover:text-white transition-colors duration-200">{ind.title}</h3>
                 <p className="mt-2 text-sm text-ash leading-relaxed flex-1 relative z-10 group-hover:text-cloud/90 transition-colors duration-200">

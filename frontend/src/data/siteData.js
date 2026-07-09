@@ -312,6 +312,7 @@ export const PROCESS_STEPS = [
 import reviewer1 from "../assets/reviewer-1.jpg";
 import reviewer2 from "../assets/reviewer-2.jpg";
 import reviewer3 from "../assets/reviewer-3.png";
+import avinashSingh from "../assets/avinash-singh.jpg";
 
 import indManufacturing from "../assets/ind-manufacturing.png";
 import indAutomotive from "../assets/ind-automotive.png";
@@ -332,11 +333,11 @@ export const TESTIMONIALS = [
     accent: "iris"
   },
   {
-    name: "Director",
-    role: "Non-Profit",
+    name: "Avinash Singh",
+    role: "Director",
     company: "Crazy Hands NGO",
     quote: "Working with Navigatte was an excellent experience from start to finish. They understood our mission and built a website that truly supports our organization. The member registration and approval system has made managing our community effortless, while the integrated online donation feature has made it easier for supporters to contribute to our cause. The team was responsive, professional, and committed to delivering exactly what we needed. I would gladly recommend Navigatte to any organization looking for a reliable technology partner.",
-    image: reviewer3,
+    image: avinashSingh,
     accent: "periwinkle"
   },
   {

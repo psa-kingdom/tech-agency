@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { Mail, Linkedin, Twitter } from "lucide-react";
 import Logo from "./Logo";
 import { SERVICES, AGENCY_NAME, CONTACT_EMAIL } from "@/data/siteData";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-abyss border-t border-white/10">
-      <div className="max-w-content mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12">
+    <footer className="bg-abyss border-t border-white/10 relative overflow-hidden">
+      <DottedSurface className="absolute inset-0 w-full h-full pointer-events-none z-0" />
+      <div className="relative z-10 max-w-content mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12">
         <div>
           <Logo />
           <p className="mt-4 text-xs font-mono text-fog tracking-wider uppercase">
@@ -96,7 +98,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-content mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="relative z-10 max-w-content mx-auto px-6 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p className="text-xs text-fog">
           © {year} {AGENCY_NAME}. All rights reserved.
         </p>
