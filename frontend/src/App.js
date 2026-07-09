@@ -5,6 +5,8 @@ import HomePage from "@/pages/HomePage";
 import AboutPage from "@/pages/AboutPage";
 import ServicePage from "@/pages/ServicePage";
 import ProjectsPage from "@/pages/ProjectsPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsPage from "@/pages/TermsPage";
 import AdminLoginPage from "@/pages/admin/AdminLoginPage";
 import AdminDashboardPage from "@/pages/admin/AdminDashboardPage";
 import ProtectedRoute from "@/components/admin/ProtectedRoute";
@@ -21,6 +23,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services/:slug" element={<ServicePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
           </Route>
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route

@@ -166,7 +166,7 @@ const Navbar = () => {
             className="bg-pure text-void hover:bg-cloud rounded-lg px-5 h-10 text-sm font-medium transition-transform duration-200 active:scale-95 flex items-center gap-1.5"
           >
             <a href={CTA_LINK} target="_blank" rel="noopener noreferrer">
-              Book a Call
+              Book a Free Call
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
           </Button>
@@ -268,7 +268,7 @@ const Navbar = () => {
                       className="mt-4 bg-pure text-void hover:bg-cloud rounded-lg h-11 text-sm font-medium w-full flex items-center justify-center gap-1.5"
                     >
                       <a href={CTA_LINK} target="_blank" rel="noopener noreferrer">
-                        Book a Call
+                        Book a Free Call
                         <ArrowRight className="w-3.5 h-3.5" />
                       </a>
                     </Button>

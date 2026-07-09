@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Twitter } from "lucide-react";
 import Logo from "./Logo";
-import { SERVICES, AGENCY_NAME, CONTACT_EMAIL } from "@/data/siteData";
+import { SERVICES, AGENCY_NAME, CONTACT_EMAIL, TWITTER_URL, LINKEDIN_URL } from "@/data/siteData";
 import { DottedSurface } from "@/components/ui/dotted-surface";
 
 const Footer = () => {
@@ -78,7 +78,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#"
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-testid="footer-link-linkedin"
                 className="text-sm text-ash hover:text-cloud transition-colors duration-200 flex items-center gap-2"
               >
@@ -87,7 +89,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#"
+                href={TWITTER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-testid="footer-link-twitter"
                 className="text-sm text-ash hover:text-cloud transition-colors duration-200 flex items-center gap-2"
               >
@@ -103,20 +107,20 @@ const Footer = () => {
           © {year} {AGENCY_NAME}. All rights reserved.
         </p>
         <div className="flex items-center gap-6">
-          <a
-            href="#"
+          <Link
+            to="/privacy"
             data-testid="footer-link-privacy"
             className="text-xs text-fog hover:text-ash transition-colors duration-200"
           >
             Privacy Policy
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/terms"
             data-testid="footer-link-terms"
             className="text-xs text-fog hover:text-ash transition-colors duration-200"
           >
             Terms
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

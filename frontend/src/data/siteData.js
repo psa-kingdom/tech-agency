@@ -1,8 +1,10 @@
 // Central content store — updated for Navigatte structure and industry solutions.
 
 export const AGENCY_NAME = "Navigatte";
-export const CTA_LINK = "https://cal.com/souravdash";
-export const CONTACT_EMAIL = "srv.uxd@gmail.com";
+export const CTA_LINK = "https://cal.com/navigatte/30min";
+export const CONTACT_EMAIL = "navigattelabs@gmail.com";
+export const TWITTER_URL = "https://x.com/navigatte";
+export const LINKEDIN_URL = "https://www.linkedin.com/company/navigatte/";
 
 export const NAV_LINKS = [
   { label: "Process", href: "/#process" },
@@ -313,6 +315,7 @@ import reviewer1 from "../assets/reviewer-1.jpg";
 import reviewer2 from "../assets/reviewer-2.jpg";
 import reviewer3 from "../assets/reviewer-3.png";
 import avinashSingh from "../assets/avinash-singh.jpg";
+import nishantKumar from "../assets/nishant-kumar.png";
 
 import indManufacturing from "../assets/ind-manufacturing.png";
 import indAutomotive from "../assets/ind-automotive.png";
@@ -345,7 +348,7 @@ export const TESTIMONIALS = [
     role: "Chairman",
     company: "Bihar Foundation – Kolkata Chapter",
     quote: "The team delivered a clean, modern website that reflects our vision beautifully. Their professionalism, attention to detail, and timely delivery made the entire experience smooth and enjoyable.",
-    image: reviewer1,
+    image: nishantKumar,
     accent: "orchid"
   }
 ];
@@ -405,7 +408,7 @@ export const INDUSTRIES = [
   {
     slug: "non-profit-associations",
     icon: "Users",
-    title: "Non-Profit & Associations",
+    title: "Non-Profit Organisations",
     description: "Build member-centric platforms, engagement systems, donor management solutions, and digital ecosystems.",
     image: indNonprofit
   }

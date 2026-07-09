@@ -49,7 +49,7 @@ const WhyUs = () => {
                 key={item.title}
                 variants={itemVariants}
                 data-testid={`why-us-item-${i}`}
-                className="group border border-white/5 rounded-feature p-6 bg-graphite/10 transition-all duration-300 hover:border-iris/25 hover:-translate-y-1"
+                className="group border border-white/5 rounded-feature p-6 bg-graphite/10 transition-all duration-300 hover:border-iris/25 hover:-translate-y-1 flex flex-col items-center text-center"
               >
                 <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
                   <Icon className="w-5 h-5 text-iris" />

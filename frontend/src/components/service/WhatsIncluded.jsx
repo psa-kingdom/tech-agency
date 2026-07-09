@@ -19,7 +19,7 @@ const WhatsIncluded = ({ items }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
               data-testid={`whats-included-item-${i}`}
-              className="bg-graphite/50 border border-white/10 rounded-feature p-6"
+              className="bg-graphite/50 border border-white/10 rounded-feature p-6 flex flex-col items-center text-center"
             >
               <div className="w-8 h-8 rounded-lg bg-iris/15 flex items-center justify-center mb-4">
                 <Check className="w-4 h-4 text-iris" />

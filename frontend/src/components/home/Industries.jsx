@@ -125,7 +125,7 @@ const Industries = () => {
                 key={ind.slug}
                 variants={itemVariants}
                 data-testid={`industry-card-${ind.slug}`}
-                className="group flex flex-col border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-[var(--hover-border)] hover:-translate-y-1.5 relative overflow-hidden z-0 bg-graphite/5"
+                className="group flex flex-col items-center text-center border border-white/10 rounded-feature p-6 transition-all duration-300 hover:border-[var(--hover-border)] hover:-translate-y-1.5 relative overflow-hidden z-0 bg-graphite/5"
                 style={{
                   "--hover-border": theme.hoverBorder
                 }}

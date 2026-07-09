@@ -185,7 +185,7 @@ const AboutPage = () => {
                     hidden: { opacity: 0, y: 24 },
                     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 90, damping: 16 } }
                   }}
-                  className={`group relative overflow-hidden rounded-feature p-8 border transition-all duration-300 hover:-translate-y-1.5 z-0 border-white/10 bg-graphite/5 ${
+                  className={`group relative overflow-hidden rounded-feature p-8 border transition-all duration-300 hover:-translate-y-1.5 z-0 border-white/10 bg-graphite/5 flex flex-col items-center text-center ${
                     isFuture ? "hover:border-iris/40" : "hover:border-white/20"
                   }`}
                 >
@@ -233,7 +233,7 @@ const AboutPage = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
-                className="group relative bg-graphite/40 border border-white/10 rounded-feature p-8 hover:bg-graphite/60 hover:border-iris/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(132,125,255,0.06)] flex flex-col h-full overflow-hidden"
+                className="group relative bg-graphite/40 border border-white/10 rounded-feature p-8 hover:bg-graphite/60 hover:border-iris/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_24px_rgba(132,125,255,0.06)] flex flex-col items-center text-center h-full overflow-hidden"
               >
                 {/* Glow indicator source */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-iris/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
