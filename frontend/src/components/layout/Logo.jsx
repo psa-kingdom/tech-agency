@@ -11,9 +11,17 @@ const Logo = ({ className = "" }) => {
   const isLightTheme = resolvedTheme === "light";
   const logoSrc = isLightTheme ? logoDark : logoLight;
 
+  const handleClick = (e) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Link
       to="/"
+      onClick={handleClick}
       data-testid="logo-home-link"
       className={`flex items-center group ${className}`}
     >

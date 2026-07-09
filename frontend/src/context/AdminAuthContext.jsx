@@ -39,6 +39,9 @@ export const AdminAuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const { data } = await api.post("/auth/login", { email, password });
+      if (data.access_token) {
+        localStorage.setItem("admin_token", data.access_token);
+      }
       setAdmin(data);
       return { success: true };
     } catch (e) {
@@ -55,6 +58,7 @@ export const AdminAuthProvider = ({ children }) => {
     } catch {
       // ignore — we clear client state regardless
     }
+    localStorage.removeItem("admin_token");
     setAdmin(false);
   };
 

@@ -18,8 +18,7 @@ const Footer = () => {
             Enterprise Technology · Intelligence · Transformation
           </p>
           <p className="mt-2 text-sm text-ash leading-relaxed max-w-xs font-light">
-            Building Intelligent Enterprises. <br />
-            Navigate Complexity. Accelerate Growth.
+            Your Haven for Digital Solutions
           </p>
         </div>
 

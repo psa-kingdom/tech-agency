@@ -36,7 +36,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-obsidian overflow-hidden min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] flex items-center">
+    <section id="hero" className="relative bg-obsidian overflow-hidden min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] flex items-center">
       <HeroBackgroundVideo />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-obsidian pointer-events-none z-[1]" />
       

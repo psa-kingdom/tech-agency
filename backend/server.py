@@ -95,6 +95,7 @@ class AdminUserPublic(BaseModel):
     id: str
     email: str
     role: str
+    access_token: Optional[str] = None
 
 
 def _cookie_kwargs():
@@ -119,7 +120,7 @@ async def admin_login(payload: LoginRequest, response: Response, request: Reques
     refresh_token = create_refresh_token(admin.id)
     response.set_cookie(key="access_token", value=access_token, max_age=60 * 60 * 12, **_cookie_kwargs())
     response.set_cookie(key="refresh_token", value=refresh_token, max_age=60 * 60 * 24 * 7, **_cookie_kwargs())
-    return AdminUserPublic(id=admin.id, email=admin.email, role=admin.role)
+    return AdminUserPublic(id=admin.id, email=admin.email, role=admin.role, access_token=access_token)
 
 
 @api_router.post("/auth/logout")
