@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import api from "@/lib/api";
 import ProjectModal from "@/components/shared/ProjectModal";
 import GetInTouch from "@/components/layout/GetInTouch";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -93,16 +94,17 @@ const ProjectsPage = () => {
                     key={project.id}
                     onClick={() => setSelected(project)}
                     data-testid={`project-card-${project.id}`}
-                    initial={{ opacity: 0, scale: 0.95, y: 16 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: 16 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 16 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                     className="group text-left rounded-feature overflow-hidden border border-white/10 hover:border-iris/40 bg-graphite/40 transition-colors duration-300 shadow-sm hover:shadow-[0_0_30px_rgba(132,125,255,0.02)]"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-950">
                       <img
-                        src={project.image_url}
+                        src={getOptimizedImageUrl(project.image_url, 600)}
                         alt={project.title}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>

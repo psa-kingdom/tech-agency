@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import api from "@/lib/api";
 import ProjectModal from "@/components/shared/ProjectModal";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 const FeaturedProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -50,14 +51,15 @@ const FeaturedProjects = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.3, delay: i * 0.04, ease: "easeOut" }}
                 className={`group relative overflow-hidden rounded-feature text-left border border-white/10 hover:border-iris/40 transition-colors duration-300 ${
                   i === 0 ? "md:col-span-2 md:row-span-2 min-h-[280px]" : "min-h-[220px]"
                 }`}
               >
                 <img
-                  src={project.image_url}
+                  src={getOptimizedImageUrl(project.image_url, i === 0 ? 800 : 600)}
                   alt={project.title}
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />

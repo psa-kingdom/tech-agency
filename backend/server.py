@@ -252,6 +252,11 @@ DEMO_PROJECTS = [
         "description": "A full redesign of a home-furnishings brand's website — new visual identity, a CMS the marketing team can run without a developer, and a checkout flow that cut cart abandonment noticeably in the first quarter post-launch.",
         "image_url": "https://images.unsplash.com/photo-1487014679447-9f8336841d58",
         "tags": ["Website"],
+        "highlights": [
+            "Custom web design with responsive layouts across devices",
+            "Integrated headless CMS for quick marketing content updates",
+            "Streamlined checkout process that increased conversion by 18%"
+        ],
         "featured": True,
         "order": 0,
     },
@@ -260,6 +265,11 @@ DEMO_PROJECTS = [
         "description": "A multi-tenant analytics dashboard for a fintech startup — real-time transaction insights, role-based access, and a component system built to support their next three product lines without a rebuild.",
         "image_url": "https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0",
         "tags": ["SaaS", "Web App"],
+        "highlights": [
+            "Real-time transaction insights via WebSockets",
+            "Advanced role-based access control (RBAC) security",
+            "Reusable visual component library for scalability"
+        ],
         "featured": True,
         "order": 1,
     },
@@ -268,6 +278,11 @@ DEMO_PROJECTS = [
         "description": "A companion web app for a retail chain's loyalty program — browsing, rewards tracking, and push-style notifications, all in a lightweight interface their in-store staff also use on tablets.",
         "image_url": "https://images.unsplash.com/photo-1548094891-c4ba474efd16",
         "tags": ["Web App"],
+        "highlights": [
+            "Seamless loyalty rewards tracker interface",
+            "Push notifications for active store promotions",
+            "Optimized layout for fast tablet and mobile views"
+        ],
         "featured": True,
         "order": 2,
     },
@@ -276,6 +291,11 @@ DEMO_PROJECTS = [
         "description": "An internal reporting suite pulling together paid, organic, and lifecycle email data into one view — replacing five disconnected spreadsheets with a single source of truth for the growth team.",
         "image_url": "https://images.pexels.com/photos/10020092/pexels-photo-10020092.jpeg",
         "tags": ["Marketing", "SaaS"],
+        "highlights": [
+            "Consolidated organic, paid, and email campaign data",
+            "Interactive charting for quick performance analysis",
+            "Custom API integrations with top marketing tools"
+        ],
         "featured": False,
         "order": 3,
     },
@@ -284,6 +304,11 @@ DEMO_PROJECTS = [
         "description": "A phased S/4HANA migration for a mid-size manufacturer — data validation, parallel testing, and a rollback plan at every stage, completed with zero unplanned downtime.",
         "image_url": "https://images.unsplash.com/photo-1762163516269-3c143e04175c",
         "tags": ["SAP"],
+        "highlights": [
+            "Zero unplanned downtime during transition stages",
+            "Automatic data validation before migration batches",
+            "Comprehensive roll-back plans for risk mitigation"
+        ],
         "featured": True,
         "order": 4,
     },
@@ -292,6 +317,11 @@ DEMO_PROJECTS = [
         "description": "An end-to-end automation layer connecting a logistics company's CRM, email, and internal tools — cutting manual data entry across their fulfillment pipeline by the majority of what a two-person team used to handle by hand.",
         "image_url": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg",
         "tags": ["Workflow Automation"],
+        "highlights": [
+            "Reduced manual logistics entry tasks by 60%",
+            "Seamless integrations between CRM and email clients",
+            "Real-time pipeline exception monitoring and alerts"
+        ],
         "featured": True,
         "order": 5,
     },
@@ -300,6 +330,11 @@ DEMO_PROJECTS = [
         "description": "A ground-up storefront rebuild for a direct-to-consumer brand — faster load times, a streamlined checkout, and integrated email marketing that turned repeat purchase rate into their best-performing channel.",
         "image_url": "https://images.pexels.com/photos/6956903/pexels-photo-6956903.jpeg",
         "tags": ["Website", "Marketing"],
+        "highlights": [
+            "Lightning-fast page load times under 1.2s",
+            "Streamlined product page layouts and filters",
+            "Integrated automated lifecycle marketing triggers"
+        ],
         "featured": False,
         "order": 6,
     },
@@ -308,6 +343,11 @@ DEMO_PROJECTS = [
         "description": "A custom internal dashboard replacing a patchwork of spreadsheets for a logistics team — live shipment tracking, automated exception alerts, and a single view for a team that used to start every morning stitching reports together.",
         "image_url": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43",
         "tags": ["SaaS", "Workflow Automation"],
+        "highlights": [
+            "Unified shipment tracking map interface",
+            "Automated exception alerts for delayed packages",
+            "Daily automated reporting compilation module"
+        ],
         "featured": False,
         "order": 7,
     },

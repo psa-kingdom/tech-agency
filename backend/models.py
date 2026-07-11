@@ -78,6 +78,7 @@ class Project(BaseDocument):
     description: str
     image_url: str
     tags: List[str] = Field(default_factory=list)
+    highlights: List[str] = Field(default_factory=list)
     featured: bool = False
     order: int = 0
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -88,6 +89,7 @@ class ProjectCreate(BaseModel):
     description: str
     image_url: str
     tags: List[str] = Field(default_factory=list)
+    highlights: List[str] = Field(default_factory=list)
     featured: bool = False
     order: int = 0
 
@@ -97,5 +99,6 @@ class ProjectUpdate(BaseModel):
     description: Optional[str] = None
     image_url: Optional[str] = None
     tags: Optional[List[str]] = None
+    highlights: Optional[List[str]] = None
     featured: Optional[bool] = None
     order: Optional[int] = None

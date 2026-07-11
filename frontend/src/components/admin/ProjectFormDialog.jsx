@@ -20,6 +20,7 @@ const emptyForm = {
   description: "",
   image_url: "",
   tags: [],
+  highlights: [],
   featured: false,
   order: 0,
 };
@@ -37,6 +38,7 @@ const ProjectFormDialog = ({ open, onOpenChange, project, onSaved, availableTags
         description: project.description,
         image_url: project.image_url,
         tags: project.tags || [],
+        highlights: project.highlights || [],
         featured: project.featured,
         order: project.order,
       });
@@ -50,11 +52,15 @@ const ProjectFormDialog = ({ open, onOpenChange, project, onSaved, availableTags
     e.preventDefault();
     setSaving(true);
     setError("");
+    const cleanHighlights = (form.highlights || [])
+      .map((h) => h.trim())
+      .filter(Boolean);
+    const payload = { ...form, highlights: cleanHighlights };
     try {
       if (project) {
-        await api.put(`/projects/${project.id}`, form);
+        await api.put(`/projects/${project.id}`, payload);
       } else {
-        await api.post(`/projects`, form);
+        await api.post(`/projects`, payload);
       }
       toast({ title: project ? "Project updated" : "Project created" });
       onSaved();
@@ -98,6 +104,17 @@ const ProjectFormDialog = ({ open, onOpenChange, project, onSaved, availableTags
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               className="bg-obsidian border-white/10 text-cloud mt-1.5"
+            />
+          </div>
+          <div>
+            <Label className="text-ash text-xs">Highlights (one bullet point per line)</Label>
+            <Textarea
+              rows={4}
+              data-testid="project-form-highlights"
+              value={(form.highlights || []).join("\n")}
+              onChange={(e) => setForm({ ...form, highlights: e.target.value.split("\n") })}
+              className="bg-obsidian border-white/10 text-cloud mt-1.5"
+              placeholder="e.g. Key accomplishment 1&#10;Key accomplishment 2"
             />
           </div>
           <div>

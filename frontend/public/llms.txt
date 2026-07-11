@@ -1,0 +1,25 @@
+# Navigatte
+
+> AI and software development agency delivering premium digital solutions, custom web platforms, automated workflows, and enterprise transformations.
+
+## Main Pages
+
+- [Home](/) - Hero introduction, services overview, client testimonials, and features.
+- [About](/about) - Company vision, mission, methodology (stepper workflow), and platforms (SIMS, Governance, Audit, AI).
+- [Projects](/projects) - Dynamic portfolio grid featuring recent work across websites, SaaS platforms, and automation systems, filterable by tags.
+
+## Core Offerings & Services
+
+- **Digital Platforms:** Responsive websites and visual designs.
+- **Enterprise Applications:** High-availability scalable architectures.
+- **AI & Automation:** Workflow automation, data processing, and custom AI integrations.
+- **Cloud Engineering:** Migration, architecture, and infrastructure management.
+- **Data Intelligence:** Interactive reporting and analytics dashboards.
+
+## Portfolio Highlights
+
+- **Furniture Co. Marketing Site:** Redesign with integrated headless CMS.
+- **Fintech SaaS Dashboard:** Multi-tenant analytics dashboard with WebSockets.
+- **Retail Mobile Companion App:** Loyalty rewards and push notifications.
+- **Enterprise SAP Cloud Migration:** S/4HANA migration with zero downtime.
+- **Ops Workflow Automation Platform:** Automated integration cutting entry tasks by 60%.
